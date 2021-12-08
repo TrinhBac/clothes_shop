@@ -17,7 +17,7 @@
           @foreach ($products as $product)
               <tr>
                             <td scope="row">{{ $loop->index + 1 }}</td>
-                          <td><img src="{{ $product->image }}" alt="anh"></td>
+                          <td><img src="{{ $product->image }}" alt="anh" style="width: 100px; height: 100px"></td>
                           <td>{{ $product->name }}</td>
                           <td>{{ $product->price }}</td>
                           <td>{{ $product->size }}</td>
@@ -27,7 +27,7 @@
                                     <input type="hidden" name="cart_id" value="{{ Auth::user()->cart->id }}">
                                     <input type="hidden" name="product_id" value="{{ $product->id }}">
                                     <input type="number" name="amount" style="width: 50px; margin-right: 50px" value="1" min="1">
-                                    <input type="submit"  value="Them vao gio">
+                                    <input type="submit" class="btn btn-success" value="Them vao gio">
                                 </form>
                             </td>
               </tr>
