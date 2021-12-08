@@ -19,6 +19,12 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <style>
+        .cart:hover {
+            background-color: rgb(130, 129, 131);
+        }
+    </style>
 </head>
 <body>
     <div id="app">
@@ -50,14 +56,14 @@
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item dropdown" style="margin-right: 20px">
+                            <li class="nav-item dropdown cart pr-2" style="margin-right: 20px">
                                 <a class="nav-link" href="{{ route('cart') }}">
                                     <i class="fas fa-cart-plus"></i>
                                 </a>
                             </li>
 
 
-                            <li class="nav-item dropdown">
+                            <li class="nav-item dropdown cart">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
