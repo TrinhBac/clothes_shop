@@ -24,3 +24,5 @@ Route::get('/cart', 'CartController@index')->name('cart');
 Route::put('/cart_item/{id}', 'CartItemController@update')->name('cartUpdate');
 Route::get('/cart_item/{id}', 'CartItemController@destroy')->name('cartDelete');
 Route::post('/addToCart', 'CartItemController@store')->name('addToCart');
+Route::get('/profile', 'Auth\ProfileController@show')->name('profile');
+Route::put('/profile', 'Auth\ProfileController@update')->name('profile.update');
