@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\CartItem;
+use App\User;
 use Illuminate\Http\Request;
 
 class CartItemController extends Controller
@@ -35,7 +36,14 @@ class CartItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        CartItem::where(['cart_id' => $request->cart_id, 'product_id' => $request->product_id])->delete();
+        $cart_item = new CartItem();
+        $cart_item->cart_id = $request->cart_id;
+        $cart_item->product_id = $request->product_id;
+        $cart_item->amount = $request->amount;
+        $cart_item->save();
+
+        return redirect()->back();
     }
 
     /**
@@ -67,9 +75,13 @@ class CartItemController extends Controller
      * @param  \App\CartItem  $cartItem
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CartItem $cartItem)
+    public function update(Request $request, $id)
     {
-        //
+        $cart_item = CartItem::findOrFail($id);
+        $cart_item->amount = $request->amount;
+        $cart_item->save();
+
+        return redirect()->back();
     }
 
     /**
@@ -78,8 +90,11 @@ class CartItemController extends Controller
      * @param  \App\CartItem  $cartItem
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CartItem $cartItem)
+    public function destroy($id)
     {
-        //
+        $cart_item = CartItem::findOrFail($id);
+        $cart_item->delete();
+
+        return redirect()->back();
     }
 }

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Cart;
+use App\CartItem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
@@ -14,7 +16,15 @@ class CartController extends Controller
      */
     public function index()
     {
-        //
+        // Lấy các cart_item để hiển thị trong cart
+        $cart_items = CartItem::with('cart', 'product')->where('cart_id', Auth::user()->cart->id)->get();
+        // Tính tổng tiền
+        $total = 0;
+        foreach ($cart_items as $item) {
+            $total += $item->product->price * $item->amount;
+        }
+
+        return view('cart', compact('cart_items', 'total'));
     }
 
     /**
