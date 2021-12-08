@@ -19,7 +19,7 @@
             @foreach ($cart_items as $item)
                 <tr>
                     <td scope="row">{{ $loop->index + 1 }}</td>
-                    <td><img src="{{ $item->product->image }}" alt="anh"></td>
+                    <td><img src="{{ $item->product->image }}" alt="anh" style="width: 100px; height: 100px"></td>
                     <td>{{ $item->product->name }}</td>
                     <td>{{ $item->product->price }}</td>
                     <td>{{ $item->product->size }}</td>
@@ -29,19 +29,19 @@
                             @csrf
                             @method('PUT')
                             <input type="number" name="amount" style="width: 50px; margin-right: 50px" value="{{ $item->amount }}">
-                            <input type="submit"  value="Update">
+                            <input type="submit"  value="Update" class="btn btn-success">
                         </form>
                     </td>
                     <td>{{ $item->product->price * $item->amount }}</td>
                     <td>
-                        <a href="{{ route('cartDelete', ['id' => $item->id]) }}">Xoa</a>
+                        <a href="{{ route('cartDelete', ['id' => $item->id]) }}" class="btn btn-danger">Xoa</a>
                     </td>
                 </tr>
             @endforeach
             </tbody>
         </table>
         <h2>Tong tien: {{ $total }}</h2>
-        <button>Thanh toan</button>
+        <button class="btn btn-primary">Thanh toan</button>
     </div>
 
     </div>
